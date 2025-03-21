@@ -1,0 +1,64 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* App Layout */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App > div {
+  flex: 1; /* Ensures main content takes up available space */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header,
+  footer {
+    font-size: 1.2rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+}
