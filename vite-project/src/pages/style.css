@@ -132,6 +132,7 @@ button:hover {
 button.secondary {
   background-color: var(--secondary-button-bg);
   color: var(--text-color); 
+  padding: 0.25rem 0.25rem;
 }
 
 button.secondary:hover {

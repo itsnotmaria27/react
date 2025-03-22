@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import {CartContext} from '../components/cartContext';
+import { CartContext } from '../components/cartContext';
 import ThemeContext from '../components/themeContext';
 import "./style.css";
 
-function Cart()  {
-  const {cartItems, removeFromCart} = useContext(CartContext);
-  const {theme, toggleTheme} = useContext(ThemeContext);
-  const total = cartItems.reduce((sum, item)=> sum + parseFloat(item.price)* item.quantity, 0);
+function Cart() {
+  const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const total = cartItems.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
 
   return (
     <div className="page-container">
@@ -19,6 +20,11 @@ function Cart()  {
             <li key={item.id}>
               <h2>{item.name}</h2>
               <p>{item.price} x {item.quantity}</p>
+              <div className="quantity-controls">
+                <button  className = "secondary" onClick={() => decreaseQuantity(item.id)}>-</button>
+                <span>{item.quantity}</span>
+                <button className = "secondary" onClick={() => increaseQuantity(item.id)}>+</button>
+              </div>
               <button onClick={() => removeFromCart(item.id)}>Delete</button>
             </li>
           ))}
@@ -33,4 +39,4 @@ function Cart()  {
   );
 }
 
-export default Cart
+export default Cart;
