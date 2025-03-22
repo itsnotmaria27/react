@@ -7,6 +7,7 @@ function Header()  {
     <nav>
       <Link to="/Home">Главная</Link>
       <Link to="/Catalog">Каталог</Link>
+      <Link to="/Feedback">Отзывы</Link>
       <Link to="/Cart">Корзина</Link>
     </nav>
   )

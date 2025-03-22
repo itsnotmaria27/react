@@ -1,11 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, {Suspense} from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
-import CategoryProduct from './pages/CategoryProduct';
 import Auth from './pages/Auth';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
@@ -14,6 +12,10 @@ import supabase from './components/SupabaseClient';
 import { CartProvider } from './components/cartContext';
 import FeedbackForm from './pages/FeedbackForm';
 import { ThemeProvider } from './components/themeContext';
+
+const Catalog = React.lazy(() => import('./pages/Catalog'));
+const CategoryProduct = React.lazy(() => import('./pages/CategoryProduct'));
+
 
 function App() {
   return (
@@ -30,8 +32,19 @@ function App() {
                   <Route index element={<Auth />} />
                   <Route path="/Cart" element={<Cart />} />
                   <Route path="/Register" element={<Register />} />
-                  <Route path="/Catalog" element={<Catalog />} />
-                  <Route path="/category/:id" element={<CategoryProduct />} />
+                  <Route
+                    path="/Catalog"
+                    element={
+                      <Suspense fallback={<div>Загрузка...</div>}>
+                        <Catalog />
+                      </Suspense>
+                    }
+                  />
+                  <Route path="/category/:id" element={
+                      <Suspense fallback={<div>Загрузка...</div>}>
+                        <CategoryProduct />
+                      </Suspense>
+                    } />
                   <Route path="/Feedback" element={<FeedbackForm />} />
                 </Routes>
               </main>
